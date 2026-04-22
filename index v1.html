@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KFIT — Ropa Deportiva Cancún</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Pinyon+Script&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #060606;
+  --rose: #C9957A;
+  --rose-light: #E8BFB0;
+  --off-white: #F2EDE8;
+  --dark-1: #111111;
+  --dark-2: #1C1C1C;
+  --dark-3: #2A2A2A;
+  --muted: #5A5A5A;
+
+  /* product colors */
+  --negro: #1a1a1a;
+  --vino: #6B2737;
+  --beige: #C8A882;
+  --azul: #2D4A6B;
+  --verde: #2D5A3D;
+  --chocolate: #5C3D2E;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--off-white);
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+}
+
+/* GRAIN OVERLAY */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
+/* ─── 1. DEMO BAR ─── */
+.demo-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: var(--rose);
+  color: #060606;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.18em;
+  text-align: center;
+  padding: 6px 0;
+}
+
+/* ─── 2. NAV ─── */
+nav {
+  position: fixed;
+  top: 29px;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  padding: 20px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.4s ease, backdrop-filter 0.4s ease;
+}
+
+nav.scrolled {
+  background: rgba(6, 6, 6, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(201, 149, 122, 0.12);
+}
+
+.nav-logo {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+.nav-logo .wordmark {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  letter-spacing: 0.12em;
+  color: var(--off-white);
+}
+.nav-logo .sub {
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 1px;
+}
+
+.nav-cta {
+  border: 1.5px solid var(--rose);
+  color: var(--rose);
+  background: transparent;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 10px 24px;
+  cursor: pointer;
+  transition: background 0.25s, color 0.25s;
+}
+.nav-cta:hover { background: var(--rose); color: #060606; }
+
+/* ─── 3. HERO ─── */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-top: 29px;
+}
+
+/* LEFT */
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 120px 64px 80px 64px;
+  position: relative;
+}
+
+.hero-headline {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(10rem, 15vw, 18rem);
+  line-height: 0.88;
+  color: var(--off-white);
+  letter-spacing: -0.02em;
+}
+
+.hero-tagline {
+  font-family: 'DM Sans', sans-serif;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--rose);
+  font-size: clamp(1.1rem, 1.8vw, 1.6rem);
+  margin-top: 32px;
+  letter-spacing: 0.04em;
+}
+
+.hero-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 40px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  backdrop-filter: blur(8px);
+  padding: 12px 20px;
+  border-radius: 100px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  color: var(--off-white);
+  width: fit-content;
+  transition: background 0.25s, border-color 0.25s;
+}
+.hero-whatsapp:hover { background: rgba(201,149,122,0.12); border-color: var(--rose); }
+
+.pulse-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #25D366;
+  box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6);
+  animation: pulse-green 2s infinite;
+  flex-shrink: 0;
+}
+@keyframes pulse-green {
+  0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.6); }
+  70% { box-shadow: 0 0 0 8px rgba(37,211,102,0); }
+  100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
+}
+
+/* RIGHT */
+.hero-right {
+  background: var(--dark-1);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-watermark {
+  position: absolute;
+  font-family: 'Pinyon Script', cursive;
+  font-size: clamp(8rem, 14vw, 20rem);
+  color: var(--rose);
+  opacity: 0.04;
+  user-select: none;
+  white-space: nowrap;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero-product-frame {
+  position: relative;
+  z-index: 1;
+  width: 62%;
+  aspect-ratio: 3/4;
+  background: linear-gradient(160deg, #1C1C1C 0%, #0a0a0a 100%);
+  border: 1px solid rgba(201,149,122,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-product-frame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 18px,
+    rgba(201,149,122,0.03) 18px,
+    rgba(201,149,122,0.03) 19px
+  );
+}
+
+.hero-placeholder-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--muted);
+  letter-spacing: 0.15em;
+  text-align: center;
+  line-height: 1.8;
+  z-index: 1;
+}
+
+.hero-corner-text {
+  position: absolute;
+  bottom: 48px;
+  right: -14px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.25em;
+  color: var(--muted);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  opacity: 0.5;
+}
+
+/* ─── 4. TICKER ─── */
+.ticker-belt {
+  overflow: hidden;
+  width: 100%;
+}
+
+.ticker-strip {
+  padding: 14px 0;
+  white-space: nowrap;
+  display: flex;
+  overflow: hidden;
+}
+
+.ticker-strip.rose-bg { background: var(--rose); }
+.ticker-strip.dark-bg { background: var(--dark-2); }
+
+.ticker-content {
+  display: inline-flex;
+  animation: scroll-left 22s linear infinite;
+  gap: 0;
+}
+.ticker-strip.dark-bg .ticker-content { animation-direction: reverse; }
+
+.ticker-item {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.05rem;
+  letter-spacing: 0.18em;
+  padding: 0 20px;
+  white-space: nowrap;
+}
+.ticker-strip.rose-bg .ticker-item { color: #060606; }
+.ticker-strip.dark-bg .ticker-item { color: var(--rose); }
+
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ─── 5. PRODUCT GRID ─── */
+.products-section {
+  padding: 100px 48px;
+  background: var(--bg);
+}
+
+.products-heading {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  letter-spacing: 0.08em;
+  color: var(--off-white);
+  margin-bottom: 48px;
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+}
+.products-heading span {
+  color: var(--rose);
+  font-size: 0.4em;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto auto;
+  gap: 12px;
+}
+
+.product-card {
+  background: var(--dark-1);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+.product-card:hover {
+  border-color: rgba(201,149,122,0.6);
+  box-shadow: 0 0 32px rgba(201,149,122,0.08), inset 0 0 40px rgba(201,149,122,0.03);
+}
+
+.product-card.large {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.card-number {
+  position: absolute;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 14rem;
+  color: var(--off-white);
+  opacity: 0.03;
+  line-height: 1;
+  bottom: -20px;
+  right: -10px;
+  user-select: none;
+  pointer-events: none;
+}
+
+.card-inner {
+  padding: 28px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 220px;
+  position: relative;
+  z-index: 1;
+}
+
+.product-card.large .card-inner { min-height: 460px; }
+
+.card-gradient {
+  position: absolute;
+  inset: 0;
+  opacity: 0.12;
+  transition: opacity 0.3s;
+}
+.product-card:hover .card-gradient { opacity: 0.2; }
+
+.card-tag {
+  display: inline-block;
+  background: rgba(201,149,122,0.12);
+  border: 1px solid rgba(201,149,122,0.25);
+  color: var(--rose);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  width: fit-content;
+}
+
+.card-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.1em;
+  color: var(--off-white);
+}
+
+.product-card.large .card-name { font-size: 2.2rem; }
+
+.card-price {
+  font-family: 'DM Mono', monospace;
+  font-size: 1.1rem;
+  color: var(--rose);
+  font-weight: 500;
+}
+
+.product-card.large .card-price { font-size: 1.5rem; }
+
+.card-cta {
+  position: absolute;
+  bottom: -50px;
+  left: 0;
+  right: 0;
+  background: var(--rose);
+  color: #060606;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.12em;
+  text-align: center;
+  padding: 14px;
+  transition: bottom 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 2;
+}
+
+.product-card:hover .card-cta { bottom: 0; }
+
+/* ─── 6. FILOSOFÍA ─── */
+.filosofia {
+  padding: 100px 48px;
+  background: var(--dark-1);
+  border-top: 1px solid rgba(201,149,122,0.08);
+  border-bottom: 1px solid rgba(201,149,122,0.08);
+}
+
+.filosofia-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(201,149,122,0.1);
+}
+
+.filosofia-panel {
+  background: var(--dark-1);
+  padding: 60px 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+.filosofia-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 30px,
+    rgba(255,255,255,0.008) 30px,
+    rgba(255,255,255,0.008) 31px
+  );
+  pointer-events: none;
+}
+
+.panel-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--rose);
+  letter-spacing: 0.2em;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.panel-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3rem, 4.5vw, 5.5rem);
+  letter-spacing: 0.04em;
+  color: var(--off-white);
+  line-height: 0.9;
+  margin-bottom: 24px;
+}
+
+.panel-body {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+/* ─── 7. STATS ─── */
+.stats-strip {
+  background: var(--bg);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid rgba(201,149,122,0.1);
+  border-bottom: 1px solid rgba(201,149,122,0.1);
+}
+
+.stat-block {
+  padding: 64px 48px;
+  border-right: 1px solid rgba(201,149,122,0.1);
+  text-align: center;
+}
+.stat-block:last-child { border-right: none; }
+
+.stat-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3.5rem, 6rem, 6rem);
+  color: var(--rose);
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+
+.stat-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-top: 10px;
+}
+
+/* ─── 8. WHATSAPP CTA ─── */
+.cta-section {
+  background: var(--dark-1);
+  padding: 120px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  min-height: 600px;
+}
+
+.floating-circles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.fc {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.18;
+  animation: drift linear infinite;
+  filter: blur(1px);
+}
+
+@keyframes drift {
+  0% { transform: translateY(0) translateX(0) scale(1); }
+  33% { transform: translateY(-30px) translateX(20px) scale(1.05); }
+  66% { transform: translateY(15px) translateX(-15px) scale(0.95); }
+  100% { transform: translateY(0) translateX(0) scale(1); }
+}
+
+.cta-card {
+  position: relative;
+  z-index: 1;
+  background: rgba(28, 28, 28, 0.6);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(201,149,122,0.15);
+  padding: 80px 100px;
+  text-align: center;
+  max-width: 680px;
+  width: 100%;
+}
+
+.cta-headline {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(4rem, 9vw, 9rem);
+  letter-spacing: 0.06em;
+  color: var(--off-white);
+  line-height: 0.9;
+  margin-bottom: 24px;
+}
+
+.cta-sub {
+  font-size: 1rem;
+  color: var(--muted);
+  font-weight: 300;
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--rose);
+  color: #060606;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.14em;
+  padding: 16px 40px;
+  text-decoration: none;
+  transition: background 0.25s, transform 0.2s;
+  cursor: pointer;
+  border: none;
+}
+.cta-btn:hover { background: var(--rose-light); transform: translateY(-2px); }
+
+.wa-icon {
+  width: 22px;
+  height: 22px;
+}
+
+/* ─── 9. FOOTER ─── */
+footer {
+  background: #060606;
+  padding: 80px 48px 32px;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(201,149,122,0.08);
+}
+
+.footer-watermark {
+  position: absolute;
+  font-family: 'Pinyon Script', cursive;
+  font-size: clamp(10rem, 20vw, 24rem);
+  color: var(--off-white);
+  opacity: 0.025;
+  bottom: -40px;
+  right: -20px;
+  user-select: none;
+  pointer-events: none;
+  line-height: 1;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 60px;
+  margin-bottom: 60px;
+  position: relative;
+  z-index: 1;
+}
+
+.footer-brand .logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.4rem;
+  letter-spacing: 0.12em;
+  color: var(--off-white);
+}
+
+.footer-brand p {
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 300;
+  line-height: 1.7;
+  margin-top: 16px;
+  max-width: 280px;
+}
+
+.footer-col h4 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.2em;
+  color: var(--rose);
+  margin-bottom: 20px;
+}
+
+.footer-col ul { list-style: none; }
+.footer-col ul li {
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 300;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.footer-col ul li:hover { color: var(--off-white); }
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding-top: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1;
+}
+
+.footer-bottom p {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+}
+
+.social-links {
+  display: flex;
+  gap: 20px;
+}
+
+.social-links a {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.social-links a:hover { color: var(--rose); }
+
+/* ─── ANIMATIONS ─── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.fade-up:nth-child(2) { transition-delay: 0.1s; }
+.fade-up:nth-child(3) { transition-delay: 0.2s; }
+.fade-up:nth-child(4) { transition-delay: 0.3s; }
+
+/* ─── TWEAKS PANEL ─── */
+#tweaks-panel {
+  display: none;
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 10000;
+  background: rgba(17,17,17,0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(201,149,122,0.25);
+  padding: 20px 24px;
+  width: 260px;
+  font-family: 'DM Sans', sans-serif;
+}
+
+#tweaks-panel.active { display: block; }
+
+#tweaks-panel h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.15em;
+  color: var(--rose);
+  margin-bottom: 16px;
+}
+
+.tweak-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.tweak-row label {
+  font-size: 0.75rem;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+}
+
+.tweak-row input[type="color"] {
+  width: 32px;
+  height: 24px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.tweak-toggle {
+  width: 36px;
+  height: 20px;
+  background: var(--dark-3);
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.2s;
+  border: 1px solid rgba(201,149,122,0.2);
+}
+.tweak-toggle.on { background: var(--rose); }
+.tweak-toggle::after {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: var(--off-white);
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
+  transition: left 0.2s;
+}
+.tweak-toggle.on::after { left: 18px; }
+
+</style>
+</head>
+<body>
+
+<!-- 1. DEMO BAR -->
+<div class="demo-bar">SITIO DEMO — STACKCUBE STUDIO</div>
+
+<!-- 2. NAV -->
+<nav id="main-nav">
+  <div class="nav-logo">
+    <span class="wordmark">KFIT</span>
+    <span class="sub">ropa deportiva</span>
+  </div>
+  <button class="nav-cta" onclick="document.getElementById('cta-section').scrollIntoView({behavior:'smooth'})">Pedir ahora</button>
+</nav>
+
+<!-- 3. HERO -->
+<section class="hero">
+  <!-- LEFT -->
+  <div class="hero-left">
+    <div class="hero-headline">
+      <div>MUE</div>
+      <div>VE</div>
+      <div>LO</div>
+    </div>
+    <p class="hero-tagline">Mueve lo que tienes.</p>
+    <a href="#" class="hero-whatsapp">
+      <span class="pulse-dot"></span>
+      WhatsApp →
+    </a>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="hero-right">
+    <div class="hero-watermark">Kfit</div>
+    <div class="hero-product-frame">
+      <div class="hero-placeholder-label">
+        FOTO EDITORIAL<br>PRODUCTO 3:4<br>— DROP HERE —
+      </div>
+    </div>
+    <div class="hero-corner-text">CAN / QR / MX</div>
+  </div>
+</section>
+
+<!-- 4. TICKER BELT -->
+<div class="ticker-belt">
+  <!-- Strip 1: Rose bg, black text, scrolling left -->
+  <div class="ticker-strip rose-bg">
+    <div class="ticker-content" id="t1">
+      <span class="ticker-item">ROPA DEPORTIVA</span>
+      <span class="ticker-item">✦</span>
+      <span class="ticker-item">UNITALLA</span>
+      <span class="ticker-item">✦</span>
+      <span class="ticker-item">CANCÚN MX</span>
+      <span class="ticker-item">✦</span>
+      <span class="ticker-item">MUEVE LO QUE TIENES</span>
+      <span class="ticker-item">✦</span>
+      <span class="ticker-item">ROPA DEPORTIVA</span>
+      <span class="ticker-item">✦</span>
+      <span class="ticker-item">UNITALLA</span>
+      <span class="ticker-item">✦</span>
+      <span class="ticker-item">CANCÚN MX</span>
+      <span class="ticker-item">✦</span>
+      <span class="ticker-item">MUEVE LO QUE TIENES</span>
+      <span class="ticker-item">✦</span>
+      <span class="ticker-item">ROPA DEPORTIVA</span>
+      <span class="ticker-item">✦</span>
+      <span class="ticker-item">UNITALLA</span>
+      <span class="ticker-item">✦</span>
+      <span class="ticker-item">CANCÚN MX</span>
+      <span class="ticker-item">✦</span>
+      <span class="ticker-item">MUEVE LO QUE TIENES</span>
+      <span class="ticker-item">✦</span>
+    </div>
+  </div>
+  <!-- Strip 2: Dark bg, rose text, scrolling right -->
+  <div class="ticker-strip dark-bg">
+    <div class="ticker-content" id="t2">
+      <span class="ticker-item">ROPA DEPORTIVA</span>
+      <span class="ticker-item">✦</span>
+      <span class="ticker-item">UNITALLA</span>
+      <span class="ticker-item">✦</span>
+      <span class="ticker-item">CANCÚN MX</span>
+      <span class="ticker-item">✦</span>
+      <span class="ticker-item">MUEVE LO QUE TIENES</span>
+      <span class="ticker-item">✦</span>
+      <span class="ticker-item">ROPA DEPORTIVA</span>
+      <span class="ticker-item">✦</span>
+      <span class="ticker-item">UNITALLA</span>
+      <span class="ticker-item">✦</span>
+      <span class="ticker-item">CANCÚN MX</span>
+      <span class="ticker-item">✦</span>
+      <span class="ticker-item">MUEVE LO QUE TIENES</span>
+      <span class="ticker-item">✦</span>
+      <span class="ticker-item">ROPA DEPORTIVA</span>
+      <span class="ticker-item">✦</span>
+      <span class="ticker-item">UNITALLA</span>
+      <span class="ticker-item">✦</span>
+      <span class="ticker-item">CANCÚN MX</span>
+      <span class="ticker-item">✦</span>
+      <span class="ticker-item">MUEVE LO QUE TIENES</span>
+      <span class="ticker-item">✦</span>
+    </div>
+  </div>
+</div>
+
+<!-- 5. PRODUCT GRID -->
+<section class="products-section">
+  <div class="products-heading">
+    COLECCIÓN <span>↓ Temporada actual</span>
+  </div>
+
+  <div class="bento-grid">
+    <!-- Large card -->
+    <div class="product-card large fade-up">
+      <div class="card-gradient" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);"></div>
+      <div class="card-number">01</div>
+      <div class="card-inner">
+        <div>
+          <span class="card-tag">✦ Más vendido</span>
+        </div>
+        <div>
+          <div class="card-name">LEGGING<br>NEGRO</div>
+          <div class="card-price" style="margin-top:12px">$349 MXN</div>
+        </div>
+      </div>
+      <div class="card-cta">Pedir →</div>
+    </div>
+
+    <!-- Medium cards -->
+    <div class="product-card fade-up">
+      <div class="card-gradient" style="background: linear-gradient(135deg, #2a1a1a 0%, #4a1528 100%);"></div>
+      <div class="card-number">02</div>
+      <div class="card-inner">
+        <span class="card-tag">Sport</span>
+        <div>
+          <div class="card-name">SPORT BRA</div>
+          <div class="card-price">$279 MXN</div>
+        </div>
+      </div>
+      <div class="card-cta">Pedir →</div>
+    </div>
+
+    <div class="product-card fade-up">
+      <div class="card-gradient" style="background: linear-gradient(135deg, #1e0a0e 0%, #6B2737 100%);"></div>
+      <div class="card-number">03</div>
+      <div class="card-inner">
+        <span class="card-tag">Conjunto</span>
+        <div>
+          <div class="card-name">CONJUNTO<br>VINO</div>
+          <div class="card-price">$599 MXN</div>
+        </div>
+      </div>
+      <div class="card-cta">Pedir →</div>
+    </div>
+
+    <div class="product-card fade-up">
+      <div class="card-gradient" style="background: linear-gradient(135deg, #1a1209 0%, #5a3d1a 100%);"></div>
+      <div class="card-number">04</div>
+      <div class="card-inner">
+        <span class="card-tag">Short</span>
+        <div>
+          <div class="card-name">SHORT<br>MOTO</div>
+          <div class="card-price">$299 MXN</div>
+        </div>
+      </div>
+      <div class="card-cta">Pedir →</div>
+    </div>
+
+    <div class="product-card fade-up">
+      <div class="card-gradient" style="background: linear-gradient(135deg, #0a1a0e 0%, #1a4a28 100%);"></div>
+      <div class="card-number">05</div>
+      <div class="card-inner">
+        <span class="card-tag">Conjunto</span>
+        <div>
+          <div class="card-name">CONJUNTO<br>VERDE</div>
+          <div class="card-price">$599 MXN</div>
+        </div>
+      </div>
+      <div class="card-cta">Pedir →</div>
+    </div>
+
+    <div class="product-card fade-up">
+      <div class="card-gradient" style="background: linear-gradient(135deg, #1a1510 0%, #C8A882 40%, #a08060 100%);"></div>
+      <div class="card-number">06</div>
+      <div class="card-inner">
+        <span class="card-tag">Legging</span>
+        <div>
+          <div class="card-name">LEGGING<br>BEIGE</div>
+          <div class="card-price">$349 MXN</div>
+        </div>
+      </div>
+      <div class="card-cta">Pedir →</div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. FILOSOFÍA -->
+<section class="filosofia">
+  <div class="filosofia-grid">
+    <div class="filosofia-panel fade-up">
+      <span class="panel-num">01 —</span>
+      <div class="panel-title">UNI·<br>TALLA.</div>
+      <p class="panel-body">Un solo diseño. Todas las curvas.</p>
+    </div>
+    <div class="filosofia-panel fade-up">
+      <span class="panel-num">02 —</span>
+      <div class="panel-title">CA·<br>LIDAD.</div>
+      <p class="panel-body">Materiales que duran tanto como tus metas.</p>
+    </div>
+    <div class="filosofia-panel fade-up">
+      <span class="panel-num">03 —</span>
+      <div class="panel-title">CAN·<br>CÚN.</div>
+      <p class="panel-body">Del Caribe para el mundo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 7. STATS STRIP -->
+<section class="stats-strip">
+  <div class="stat-block fade-up">
+    <div class="stat-num">500+</div>
+    <div class="stat-label">Clientas felices</div>
+  </div>
+  <div class="stat-block fade-up">
+    <div class="stat-num">3</div>
+    <div class="stat-label">Años en Cancún</div>
+  </div>
+  <div class="stat-block fade-up">
+    <div class="stat-num">6</div>
+    <div class="stat-label">Colores</div>
+  </div>
+  <div class="stat-block fade-up">
+    <div class="stat-num">100%</div>
+    <div class="stat-label">Unitalla</div>
+  </div>
+</section>
+
+<!-- 8. WHATSAPP CTA -->
+<section class="cta-section" id="cta-section">
+  <div class="floating-circles">
+    <div class="fc" style="width:80px;height:80px;background:var(--negro);top:15%;left:8%;animation-duration:8s;animation-delay:0s;"></div>
+    <div class="fc" style="width:60px;height:60px;background:var(--vino);top:65%;left:15%;animation-duration:10s;animation-delay:-2s;"></div>
+    <div class="fc" style="width:70px;height:70px;background:var(--beige);top:25%;right:12%;animation-duration:9s;animation-delay:-4s;"></div>
+    <div class="fc" style="width:50px;height:50px;background:var(--azul);top:70%;right:18%;animation-duration:11s;animation-delay:-1s;"></div>
+    <div class="fc" style="width:90px;height:90px;background:var(--verde);bottom:15%;left:35%;animation-duration:7s;animation-delay:-3s;"></div>
+    <div class="fc" style="width:55px;height:55px;background:var(--chocolate);top:10%;right:30%;animation-duration:12s;animation-delay:-5s;"></div>
+  </div>
+
+  <div class="cta-card">
+    <div class="cta-headline">ESCRÍBE<br>NOS.</div>
+    <p class="cta-sub">Atendemos por WhatsApp. Pregunta por tallas, colores y envíos a todo México.</p>
+    <a href="https://wa.me/529981234567" class="cta-btn" target="_blank">
+      <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+      </svg>
+      Escribir por WhatsApp
+    </a>
+  </div>
+</section>
+
+<!-- 9. FOOTER -->
+<footer>
+  <div class="footer-watermark">Kfit</div>
+
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo">KFIT</div>
+      <p>Ropa deportiva boutique desde Cancún, Quintana Roo. Diseñada para mover todo lo que tienes, con el ajuste que te mereces.</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Productos</h4>
+      <ul>
+        <li>Leggings</li>
+        <li>Sport Bras</li>
+        <li>Conjuntos</li>
+        <li>Shorts</li>
+        <li>Accesorios</li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <ul>
+        <li>WhatsApp: +52 998 123 4567</li>
+        <li>Instagram: @kfit.cancun</li>
+        <li>Cancún, Q. Roo, México</li>
+        <li>Lun–Sáb: 10am – 7pm</li>
+        <li>Dom: 12pm – 5pm</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 KFIT — Todos los derechos reservados</p>
+    <div class="social-links">
+      <a href="#">INSTAGRAM</a>
+      <a href="#">TIKTOK</a>
+      <a href="#">FACEBOOK</a>
+    </div>
+  </div>
+</footer>
+
+<!-- TWEAKS PANEL -->
+<div id="tweaks-panel">
+  <h3>Tweaks</h3>
+  <div class="tweak-row">
+    <label>COLOR ROSA</label>
+    <input type="color" id="tw-rose" value="#C9957A">
+  </div>
+  <div class="tweak-row">
+    <label>TICKER ACTIVO</label>
+    <div class="tweak-toggle on" id="tw-ticker" onclick="toggleTicker()"></div>
+  </div>
+  <div class="tweak-row">
+    <label>GRAIN OVERLAY</label>
+    <div class="tweak-toggle on" id="tw-grain" onclick="toggleGrain()"></div>
+  </div>
+</div>
+
+<script>
+// NAV SCROLL
+const nav = document.getElementById('main-nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// INTERSECTION OBSERVER for fade-up
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+// TWEAKS
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "roseColor": "#f7abab",
+  "tickerActive": true,
+  "grainActive": true
+}/*EDITMODE-END*/;
+
+let tweakState = { ...TWEAK_DEFAULTS };
+
+window.addEventListener('message', e => {
+  if (e.data?.type === '__activate_edit_mode') {
+    document.getElementById('tweaks-panel').classList.add('active');
+  }
+  if (e.data?.type === '__deactivate_edit_mode') {
+    document.getElementById('tweaks-panel').classList.remove('active');
+  }
+});
+window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+
+document.getElementById('tw-rose').addEventListener('input', function() {
+  tweakState.roseColor = this.value;
+  document.documentElement.style.setProperty('--rose', this.value);
+  window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { roseColor: this.value }}, '*');
+});
+
+function toggleTicker() {
+  const el = document.getElementById('tw-ticker');
+  tweakState.tickerActive = !tweakState.tickerActive;
+  el.classList.toggle('on', tweakState.tickerActive);
+  document.querySelector('.ticker-belt').style.display = tweakState.tickerActive ? 'block' : 'none';
+  window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { tickerActive: tweakState.tickerActive }}, '*');
+}
+
+function toggleGrain() {
+  const el = document.getElementById('tw-grain');
+  tweakState.grainActive = !tweakState.grainActive;
+  el.classList.toggle('on', tweakState.grainActive);
+  // Toggle body::after via a class
+  document.body.classList.toggle('no-grain', !tweakState.grainActive);
+  window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { grainActive: tweakState.grainActive }}, '*');
+}
+</script>
+
+<style>
+body.no-grain::after { display: none; }
+</style>
+
+</body>
+</html>
